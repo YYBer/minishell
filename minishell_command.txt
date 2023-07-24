@@ -1,0 +1,216 @@
+/bin/ls -l -a -R
+
+/bin/ls -laF
+
+pwd
+
+uname -r
+
+ls -l
+
+ls -la
+
+env
+
+/usr/bin/env
+
+emacs
+
+echo"something here"
+
+exit
+
+$ wc << EOF
+> one two three
+> four five
+> EOF
+ 2  5 24
+ 
+In this example we tell wc program to wait for EOF string, then type in five words, and then type in EOF to signal that we're done giving input. In effect, it's similar to running wc by itself, typing in words, then pressing CtrlD
+
+
+The dollar sign before the thing in parenthesis usually refers to a variable. This means that this command is either passing an argument to that variable from a bash script or is getting the value of that variable for something.
+
+If readline encounters an EOF (Ctrl + D) while reading the line, and the line is empty at that point, then (char *)NULL is returned. Otherwise, the line is ended just as if a newline \n had been typed.
+
+echo "hello  $USER " > file | grep h | cat << eof | cat >> file | echo 'done'
+
+c4c3c3% FOO=4    
+c4c3c3% echo $FOO
+
+c4c3c3% export EDITOR=nano
+c4c3c3% printenv EDITOR
+nano
+
+
+c4c3c3% export EDITOR=nano
+c4c3c3% $EDITOR
+c4c3c3% unset EDITOR
+c4c3c3% $EDITOR
+
+c4c3c3% export BB=pwd
+c4c3c3% $BB
+/nfs/homes/yli/Desktop/Subject
+
+
+◦ echo with option -n		done good
+◦ cd with only a relative or absolute path	done notgood
+◦ pwd with no options		done good
+◦ export with no options	done good
+◦ unset with no options		done notgood
+◦ env with no options or arguments	done good
+◦ exit with no options		done notsure
+
+ls -l | wc -l >  aa > bb > cc > dd
+
+cat > out | cat | cat | ls
+
+
+yli@c4c1c2:~$ cat << EOF
+> $USER
+> 12
+> 12
+> 12
+> EOF
+yli
+12
+12
+12
+
+
+yli@c4c1c2:~$ cat | cat | cat | ls
+ Desktop     echo	   Music      Public	  testshow
+ Documents   francinette   Pictures   sgoinfre	  Videos
+ Downloads   goinfre	   Postman    Templates  'VirtualBox VMs'
+ 
+
+
+yli@c4c1c2:~$ 
+
+
+yli@c4c1c2:~$ cat << EOF
+> $?
+> 12
+> EOF
+0
+12
+yli@c4c1c2:~$ 
+
+c4c3c3% echo "test"
+test
+c4c3c3% $?
+zsh: command not found: 0
+c4c3c3% dkflskd
+zsh: command not found: dkflskd
+c4c3c3% $?     
+zsh: command not found: 127
+
+
+echo "abc"
+echo "abc $USER"
+echo "$USER"
+echo "$USER$USER"
+echo "abc $USER$USER"
+echo "abc $USER23$USER"
+echo "abc $USER$USER   "
+echo "abc $USER23$USER sadsa"
+echo sfsd $?
+
+[minishell:]echo "sfs$USER65"
+sfs
+
+[minishell:]echo dsfd$?dfsd
+munmap_chunk(): invalid pointer
+zsh: IOT instruction (core dumped)  ./a.out
+
+
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USERsfd
+abc
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER45
+abc
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER45$USER
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo "abc$USER45$USER"
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo "abc$USER45$PATH"
+abc/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $USER45$PATH
+/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $USER$PATH
+yli/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?$PATH
+0/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?\n$PATH
+0n/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?\n
+0n
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo \n45
+n45
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?45
+045
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?fsdf
+0fsdf
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 545$?fsdf
+5450fsdf
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 422$?4
+42204
+
+
+[minishell:]echo "123""456"
+123456
+[minishell:]echo '123'"456"
+123456
+[minishell:]echo '123''456'
+123456
+[minishell:]echo ""123""456
+123456
+should be: 123456
+
+[minishell:]echo  -nnan"$USER  c $?$HOME" ab  //ok
+-nnanyli  c 0/home/yli ab
+
+[minishell:]echo 45"aa$USER'dd'"bb   //1
+45aayli'dd'bb
+
+yli@c4c6c3:~/Desktop/Project/minishell/final$ echo 'ab   "$USER"dd'12 12
+ab   "$USER"dd12 12
+yli@c4c6c3:~/Desktop/Project/minishell/final$ echo "abc '$USER'cc"  123
+abc 'yli'cc 123
+
+[minishell:]echo $USER$HOME
+yli/home/yli
+[minishell:]echo $USER$HOME$?
+yli/home/yli0
+[minishell:]echo $USER$HOME$?""
+yli/home/yli0
+[minishell:]echo "$USER$HOME$?"
+yli/home/yli0
+
+[minishell:]echo     ""      $HOME"34"
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo     ""      "$HOME'34'"
+ /home/yli'34'
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" $HOME"34"
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" $HOME'34'
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" "$HOME'34'"
+ /home/yli'34'
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" '$HOME'34''
+ $HOME34
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $""
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $''
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $'34'
+34
+
+
+
+
+
+

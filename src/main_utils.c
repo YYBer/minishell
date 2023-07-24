@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 15:25:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 10:05:59 by mschaub          ###   ########.fr       */
+/*   Created: 2023/07/24 10:07:46 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/24 10:08:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/minishell.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+int	ft_check_readline_in_loop(void)
 {
-	char	*ret;
-	size_t	i;
-	size_t	j;
+	write(STDERR_FILENO, "exit\n", 5);
+	g_exit = 130;
+	return (-1);
+}
 
-	i = 0;
-	j = 0;
-	ret = (char *)malloc(
-			sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!ret)
-		return (NULL);
-	while (s1[i])
-	{
-		ret[j++] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		ret[j++] = s2[i];
-		i++;
-	}
-	ret[j] = 0;
-	return (ret);
+int	ft_empty_cmmarr(char *str, t_shell *shell)
+{
+	free(str);
+	free_shell(&shell);
+	return (0);
+}
+
+int	err_heredoc(void)
+{
+	printf("%d\n", g_exit);
+	g_exit = 0;
+	return (0);
 }
